@@ -56,13 +56,13 @@ def get_analysis(analysis_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Analysis not found")
     return record
 
-@router.get("/analyses/{analysis_id}/csv")
+@router.get("/analyses/{analysis_id}/file")
 def get_analysis_csv(analysis_id: int, db: Session = Depends(get_db)):
     record = db.query(AnalysisLog).filter(AnalysisLog.id == analysis_id).first()
     if not record or not record.csv_text:
-        raise HTTPException(status_code=404, detail="CSV not found")
+        raise HTTPException(status_code=404, detail="file not found")
     return Response(
         content=record.csv_text,
         media_type="text/csv",
-        headers={"Content-Disposition": f"attachment; filename=analysis_{analysis_id}.csv"}
+        headers={"Content-Disposition": f"attachment; filename=analysis_{analysis_id}.file"}
     )
