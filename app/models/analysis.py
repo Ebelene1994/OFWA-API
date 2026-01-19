@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, JSON
+from sqlalchemy import Column, Integer, String, Float, DateTime, JSON, Text
 from datetime import datetime
 from app.database import Base
 
@@ -13,5 +13,7 @@ class AnalysisLog(Base):
     average_sites_per_region = Column(Float, nullable=False)
 
     cities_above_threshold = Column(JSON, nullable=False)
+
+    csv_text = Column(Text, nullable=True)
 
     created_at = Column(DateTime, default=datetime.utcnow)
