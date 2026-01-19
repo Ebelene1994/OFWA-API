@@ -1,15 +1,17 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from io import BytesIO
 
 client = TestClient(app)
 
 def test_analyze_endpoint_valid():
-    with open("data/galamsay_data.xlsx", "rb") as f:
-        response = client.post(
-            "/analyze",
-            files={"file": ("galamsay_data.xlsx", f)},
-            data={"threshold": 10}
-        )
+    csv_content = b"city,region,sites\nA,R1,5\nB,R2,15\n"
+    f = BytesIO(csv_content)
+    response = client.post(
+        "/analyze",
+        files={"file": ("data.csv", f, "text/csv")},
+        data={"threshold": 10}
+    )
     assert response.status_code == 200
     json_data = response.json()
     assert "total_sites" in json_data

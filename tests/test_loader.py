@@ -11,7 +11,6 @@ def db_session():
     session = SessionLocal()
     yield session
     session.close()
-    Base.metadata.drop_all(bind=engine)
 
 def test_save_analysis(db_session: Session):
     results = {
@@ -20,6 +19,9 @@ def test_save_analysis(db_session: Session):
         "average_sites_per_region": 10.0,
         "cities_above_threshold": ["A"]
     }
-    log = save_analysis_log(db_session, "test.xlsx", results)
+    csv_text = "city,region,sites\nA,R1,10\nB,R2,10\n"
+    log = save_analysis_log(db_session, "test.csv", results, csv_text)
     assert log.id is not None
-    assert log.filename == "test.xlsx"
+    assert log.filename == "test.csv"
+    assert isinstance(log.csv_text, str)
+    assert "city,region,sites" in log.csv_text
