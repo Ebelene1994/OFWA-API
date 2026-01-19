@@ -1,6 +1,6 @@
 fastapi[standard]
+pandas
+sqlalchemy
+pydantic
 pytest
-SQLite
-Pandas
-Pytest
-SQLAlchemy
+openpyxl

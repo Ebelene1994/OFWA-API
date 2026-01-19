@@ -7,8 +7,11 @@ class AnalysisLog(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String, nullable=False)
+
     total_sites = Column(Integer, nullable=False)
     top_region = Column(String, nullable=False)
     average_sites_per_region = Column(Float, nullable=False)
+
     cities_above_threshold = Column(JSON, nullable=False)
+
     created_at = Column(DateTime, default=datetime.utcnow)
