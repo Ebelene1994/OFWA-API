@@ -13,5 +13,4 @@ SessionLocal = sessionmaker(
     autoflush=False,
     autocommit=False
 )
-
 Base = declarative_base()

@@ -64,5 +64,5 @@ def get_analysis_csv(analysis_id: int, db: Session = Depends(get_db)):
     return Response(
         content=record.csv_text,
         media_type="text/csv",
-        headers={"Content-Disposition": f"attachment; filename=analysis_{analysis_id}.file"}
+        headers={"Content-Disposition": f"attachment; filename=analysis_{analysis_id}.csv"}
     )
