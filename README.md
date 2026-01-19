@@ -76,8 +76,6 @@ This project uses `pytest`.
 
 - Run all tests (From project root):
   - `pytest --maxfail=1 --disable-warnings -q`
-- Run with concise output:
-  - `pytest -q`
 - Run a specific test file:
   - `python -m pytest tests/test_analysis.py -q`
   - `python -m pytest tests/test_loader.py -q`
