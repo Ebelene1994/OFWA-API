@@ -79,6 +79,10 @@ This project uses `pytest`.
 - Run with concise output:
   - `pytest -q`
 - Run a specific test file:
-  - `pytest tests/test_analysis.py -q`
+  - `python -m pytest tests/test_analysis.py -q`
+  - `python -m pytest tests/test_loader.py -q`
+  - `python -m pytest tests/test_normalizer.py -q`
+  - `python -m pytest tests/test_api.py -q`
+  - `python -m pytest tests/test_logger.py -q`
 
 
