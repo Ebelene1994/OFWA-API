@@ -1,15 +1,15 @@
 def analyze_data(df, threshold: int):
     if df.empty:
         raise ValueError("Dataset is empty")
-
+# Total number of Galamsay sites
     total_sites = int(df["sites"].sum())
-
+# Region with highest number of Galamsay sites
     top_region = (
         df.groupby("region")["sites"]
         .sum()
         .idxmax()
     )
-
+# Cities above threshold
     cities_above_threshold = (
         df.groupby("city")["sites"]
         .sum()
@@ -17,7 +17,7 @@ def analyze_data(df, threshold: int):
         .index
         .tolist()
     )
-
+# Average number of Galamsay sites per region
     avg_sites_per_region = float(
         df.groupby("region")["sites"]
         .sum()
